@@ -1,34 +1,49 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { Calendar } from './calendar';
+import { CalendarDay } from './calendar-day';
+import { displayDay, isCurrentMonth, startOfDay } from './date-helpers';
 import { useCalendarMonth } from './use-calendar-month';
-import { useDatepickerSimple } from './use-datepicker-simple';
 
-type Props = Parameters<typeof useDatepickerSimple>[0];
+type Props = {
+  selected?: number;
+  onSelect: (nextSelected: number) => void;
+};
 
 const DatepickerSimple: FC<Props> = (props) => {
   const {
-    value,
+    selected = 0,
+    onSelect,
   } = props;
 
   const {
     currentMonthTimestamp,
     onPrevMonth,
     onNextMonth,
-  } = useCalendarMonth(value ? value.from : Date.now());
+  } = useCalendarMonth(selected || Date.now());
 
-  const {
-    selectedDays,
-    handleClick,
-  } = useDatepickerSimple(props);
+  const selectedStartOfDay = useMemo(
+    () => startOfDay(selected),
+    [selected],
+  );
 
   return (
     <Calendar
-      selectedDays={selectedDays}
       monthTimestamp={currentMonthTimestamp}
       onPrevMonth={onPrevMonth}
       onNextMonth={onNextMonth}
-      onClick={handleClick}
-    />
+    >
+      {(dayTimestamp) => (
+        <CalendarDay
+          key={String(dayTimestamp)}
+          isCurrentMonth={isCurrentMonth(currentMonthTimestamp, dayTimestamp)}
+          isSelected={selectedStartOfDay === dayTimestamp}
+          dayTimestamp={dayTimestamp}
+          onClick={onSelect}
+        >
+          {displayDay(dayTimestamp)}
+        </CalendarDay>
+      )}
+    </Calendar>
   );
 };
 

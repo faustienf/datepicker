@@ -1,51 +1,49 @@
-import { useCallback, useMemo, useState } from 'react';
-
-import { Value } from './types';
+import {
+  useCallback, useMemo, useRef, useState,
+} from 'react';
+import { startOfDay } from './date-helpers';
 
 type Props = {
-  value?: Value;
-  onClick?: (dayTimestamp: number) => void;
-  onChange: (nextValue: Value) => void;
+  selected?: [number, number];
+  onSelect: (nextSelected: [number, number]) => void;
 };
 
-const startOfDay = (dayTimestamp: number): number => {
-  const date = new Date(dayTimestamp);
-  date.setHours(0, 0, 0, 0);
-  return date.getTime();
-};
+export const useDatepickerRange = ({ selected, onSelect }: Props) => {
+  const [selectedState, setSelectedState] = useState<number[]>(() => {
+    if (!selected) {
+      return [];
+    }
 
-export const useDatepickerRange = ({ value, onClick, onChange }: Props) => {
-  const [selectedDays, setSelectedDays] = useState(value ? Object.values(value).sort() : []);
+    return selected
+      .map(startOfDay)
+      .sort();
+  });
+
+  // cache, fix recreating handleClick by selectedState
+  const selectedCountRef = useRef(selectedState);
+  selectedCountRef.current = selectedState;
 
   const handleClick = useCallback(
     (dayTimestamp: number) => {
-      if (onClick) {
-        onClick(dayTimestamp);
-      }
-
-      const selectedDaysArray = Object
-        .keys(selectedDays)
-        .filter(Boolean)
-        .sort();
-
-      if (selectedDaysArray.length) {
-        onChange({
-          from: dayTimestamp,
-          to: dayTimestamp,
-        });
+      if (selectedCountRef.current.length === 1) {
+        const nextSelected = [selectedCountRef.current[0], dayTimestamp].sort() as [number, number];
+        setSelectedState(nextSelected);
+        onSelect(nextSelected);
         return;
       }
 
-      setSelectedDays((state) => ({
-        ...state,
-        [dayTimestamp]: true,
-      }));
+      setSelectedState([dayTimestamp]);
     },
-    [onChange, onClick],
+    [onSelect],
+  );
+
+  const selectedSet = useMemo(
+    () => new Set(selectedState),
+    [selectedState],
   );
 
   return {
-    selectedDays,
+    selectedSet,
     handleClick,
   };
 };

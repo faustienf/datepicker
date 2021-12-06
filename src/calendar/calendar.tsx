@@ -1,16 +1,16 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, {
+  FC, memo, useMemo, ReactNode,
+} from 'react';
 import { CalendarWeekDays } from '../calendar-week-days';
-import { CalendarDay } from '../calendar-day';
 import { CalendarHeader } from '../calendar-header';
 import { makeCalendar } from '../make-calendar';
 import './calendar.css';
 
 type Props = {
-  selectedDays?: Partial<Record<number, boolean>>;
   monthTimestamp: number;
   onPrevMonth: () => void;
   onNextMonth: () => void;
-  onClick: (dayTimestamp: number) => void;
+  children: (dayTimestamp: number) => ReactNode;
 }
 
 const isCurrentMonth = (monthTimestamp: number, dayTimestamp: number) => {
@@ -26,11 +26,10 @@ const displayDay = (timestamp: number): string => {
 
 const Calendar: FC<Props> = (props) => {
   const {
-    selectedDays = {},
+    children,
     monthTimestamp,
     onPrevMonth,
     onNextMonth,
-    onClick,
   } = props;
 
   const calendar = useMemo(
@@ -52,17 +51,7 @@ const Calendar: FC<Props> = (props) => {
         <tbody>
           {calendar.map((week, index) => (
             <tr key={String(index)}>
-              {week.map((dayTimestamp) => (
-                <CalendarDay
-                  key={String(dayTimestamp)}
-                  isCurrentMonth={isCurrentMonth(monthTimestamp, dayTimestamp)}
-                  isSelected={selectedDays[dayTimestamp]}
-                  dayTimestamp={dayTimestamp}
-                  onClick={onClick}
-                >
-                  {displayDay(dayTimestamp)}
-                </CalendarDay>
-              ))}
+              {week.map(children)}
             </tr>
           ))}
         </tbody>

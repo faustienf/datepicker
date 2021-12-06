@@ -8,8 +8,7 @@ import {
 const startOfMonth = (monthTimestamp: number): number => {
   const date = new Date(monthTimestamp);
   date.setDate(1);
-  date.setHours(0, 0, 0, 0);
-  return date.getTime();
+  return date.setHours(0, 0, 0, 0);
 };
 
 const getNextMonthTimestamp = (monthTimestamp: number): number => {
