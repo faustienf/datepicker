@@ -4,8 +4,15 @@ import { CalendarDay } from './calendar-day';
 import { displayDay, isCurrentMonth } from './date-helpers';
 import { useCalendarMonth } from './use-calendar-month';
 import { useDatepickerRange } from './use-datepicker-range';
+import { useSet } from './use-set';
 
 type Props = Parameters<typeof useDatepickerRange>[0];
+
+const checkInRange = (target: number, range: number[]): boolean => {
+  const [min = 0, max = 0] = range;
+
+  return target >= min && target <= max;
+};
 
 const DatepickerRange: FC<Props> = (props) => {
   const {
@@ -19,9 +26,11 @@ const DatepickerRange: FC<Props> = (props) => {
   } = useCalendarMonth(selected ? selected[0] : Date.now());
 
   const {
-    selectedSet,
+    nextSelected,
     handleClick,
   } = useDatepickerRange(props);
+
+  const nextSelectedSet = useSet(nextSelected);
 
   return (
     <Calendar
@@ -33,7 +42,8 @@ const DatepickerRange: FC<Props> = (props) => {
         <CalendarDay
           key={String(dayTimestamp)}
           isCurrentMonth={isCurrentMonth(currentMonthTimestamp, dayTimestamp)}
-          isSelected={selectedSet.has(dayTimestamp)}
+          isSelected={nextSelectedSet.has(dayTimestamp)}
+          inRange={checkInRange(dayTimestamp, nextSelected)}
           dayTimestamp={dayTimestamp}
           onClick={handleClick}
         >

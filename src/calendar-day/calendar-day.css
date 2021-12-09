@@ -4,6 +4,33 @@
   vertical-align: middle;
 }
 
+.calendar-day[data-in-range="true"] {
+  background-color: #BBDEFB;
+  color: #1565C0;
+}
+
+.calendar-day[data-in-range="true"]:first-child {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.calendar-day[data-in-range="true"]:last-child {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.calendar-day[data-in-range="true"][data-selected="true"] {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.calendar-day[data-in-range="true"] + .calendar-day[data-in-range="true"][data-selected="true"] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
 .calendar-day-button {
   display: inline-flex;
   align-items: center;
@@ -17,7 +44,7 @@
   font-family: inherit;
   line-height: 1;
   font-size: 14px;
-  color: #263238;
+  color: inherit;
   width: 30px;
   height: 30px;
   user-select: none;
@@ -31,8 +58,7 @@
 }
 
 .calendar-day-button[data-today="true"] {
-  color: #2196F3;
-  background-color: #E3F2FD;
+  color: #EC407A;
 }
 
 .calendar-day-button[data-selected="true"] {

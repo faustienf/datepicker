@@ -1,5 +1,5 @@
 import {
-  useCallback, useMemo, useRef, useState,
+  useCallback, useRef, useState,
 } from 'react';
 import { startOfDay } from './date-helpers';
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const useDatepickerRange = ({ selected, onSelect }: Props) => {
-  const [selectedState, setSelectedState] = useState<number[]>(() => {
+  const [nextSelected, setNextSelected] = useState<number[]>(() => {
     if (!selected) {
       return [];
     }
@@ -19,31 +19,30 @@ export const useDatepickerRange = ({ selected, onSelect }: Props) => {
       .sort();
   });
 
-  // cache, fix recreating handleClick by selectedState
-  const selectedCountRef = useRef(selectedState);
-  selectedCountRef.current = selectedState;
+  // cache - fix recreating handleClick by selectedState
+  const selectedCountRef = useRef(nextSelected);
+  selectedCountRef.current = nextSelected;
 
   const handleClick = useCallback(
     (dayTimestamp: number) => {
       if (selectedCountRef.current.length === 1) {
-        const nextSelected = [selectedCountRef.current[0], dayTimestamp].sort() as [number, number];
-        setSelectedState(nextSelected);
-        onSelect(nextSelected);
+        const finalNextSelected = [
+          selectedCountRef.current[0],
+          dayTimestamp,
+        ].sort() as [number, number];
+
+        setNextSelected(finalNextSelected);
+        onSelect(finalNextSelected);
         return;
       }
 
-      setSelectedState([dayTimestamp]);
+      setNextSelected([dayTimestamp]);
     },
     [onSelect],
   );
 
-  const selectedSet = useMemo(
-    () => new Set(selectedState),
-    [selectedState],
-  );
-
   return {
-    selectedSet,
+    nextSelected,
     handleClick,
   };
 };

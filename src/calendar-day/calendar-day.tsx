@@ -6,8 +6,10 @@ import React, {
 import './calendar-day.css';
 
 type Props = {
+  inRange?: boolean;
   isCurrentMonth?: boolean;
   isSelected?: boolean;
+  isFocused?: boolean;
   dayTimestamp: number;
   onClick: (dayTimestamp: number) => void;
 };
@@ -15,8 +17,10 @@ type Props = {
 const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   const {
     children,
+    inRange = false,
     isCurrentMonth = false,
     isSelected = false,
+    isFocused = false,
     dayTimestamp,
     onClick,
   } = props;
@@ -26,10 +30,15 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   const isToday = date.toDateString() === now.toDateString();
 
   return (
-    <td className="calendar-day">
+    <td
+      className="calendar-day"
+      data-in-range={inRange}
+      data-selected={isSelected}
+    >
       <button
         type="button"
         className="calendar-day-button"
+        tabIndex={isToday ? 0 : -1}
         data-today={isToday}
         data-selected={isSelected}
         data-current-month={isCurrentMonth}

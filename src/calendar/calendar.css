@@ -7,5 +7,5 @@
 .calendar-table {
   table-layout: fixed;
   border: 0;
-  border-spacing: 0;
+  border-spacing: 0 6px;
 }
