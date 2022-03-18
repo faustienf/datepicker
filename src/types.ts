@@ -1,4 +1,6 @@
+export type Timestamp = number;
+
 export type Value = {
-  from: number;
-  to: number;
+  from: Timestamp;
+  to: Timestamp;
 };

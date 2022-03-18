@@ -34,7 +34,7 @@ export const useTrapFocus = (ref: RefObject<HTMLElement>) => {
       trapElement.style.border = '0';
       trapElement.style.overflow = 'hidden';
 
-      trapElement.addEventListener('focus', (e) => {
+      trapElement.addEventListener('focus', () => {
         if (firstFocusableElement instanceof HTMLElement) {
           firstFocusableElement.focus();
         } else {

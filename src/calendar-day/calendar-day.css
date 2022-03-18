@@ -5,8 +5,7 @@
 }
 
 .calendar-day[data-in-range="true"] {
-  background-color: #BBDEFB;
-  color: #1565C0;
+  background-color: #FFF9C4;
 }
 
 .calendar-day[data-in-range="true"]:first-child {
@@ -45,8 +44,8 @@
   line-height: 1;
   font-size: 14px;
   color: inherit;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   user-select: none;
   cursor: pointer;
   transition: all 0.2s ease-out;
@@ -62,15 +61,11 @@
 }
 
 .calendar-day-button[data-selected="true"] {
-  background-color: #2196F3;
+  background-color: #FFCA28;
   color: #fff;
-  box-shadow: 0 6px 6px -3px #64b5f6;
+  box-shadow: 0 6px 6px -3px #FFCA28;
 }
 
-.calendar-day-button[data-selected="false"]:hover {
-  box-shadow: 0 0 0 1px #ECEFF1;
-}
-
-.calendar-day-button[data-selected="false"]:focus {
-  box-shadow: 0 0 0 1px #64b5f6;
+.calendar-day-button:focus-visible {
+  box-shadow: 0 0 0 1px #000;
 }

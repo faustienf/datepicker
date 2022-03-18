@@ -21,7 +21,6 @@
   padding: 0;
   margin: 0;
   border: 0;
-  /* outline: 0; */
   font-size: 0;
   line-height: 0;
   cursor: pointer;
@@ -30,8 +29,17 @@
   background-repeat: no-repeat;
   background-color: transparent;
   background-image: url("./icon-arrow-right.svg");
+  transition: transform 0.1s ease-out;
 }
 
 .calendar-header-button[data-mode="prev"] {
   transform: rotate(180deg);
+}
+
+.calendar-header-button:active {
+  transform: scale(0.9);
+}
+
+.calendar-header-button[data-mode="prev"]:active {
+  transform: rotate(180deg) scale(0.9);
 }

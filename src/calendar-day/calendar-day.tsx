@@ -2,16 +2,20 @@ import React, {
   FC,
   memo,
   PropsWithChildren,
+  useCallback,
 } from 'react';
+import { Timestamp } from '../types';
 import './calendar-day.css';
 
 type Props = {
   inRange?: boolean;
   isCurrentMonth?: boolean;
   isSelected?: boolean;
-  isFocused?: boolean;
-  dayTimestamp: number;
-  onClick: (dayTimestamp: number) => void;
+  isHighlighted?: boolean;
+  dayTimestamp: Timestamp;
+  onClick: (dayTimestamp: Timestamp) => void;
+  onPointerEnter?: (dayTimestamp: Timestamp) => void;
+  onPointerLeave?: (dayTimestamp: Timestamp) => void;
 };
 
 const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
@@ -20,29 +24,58 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
     inRange = false,
     isCurrentMonth = false,
     isSelected = false,
-    isFocused = false,
+    isHighlighted = false,
     dayTimestamp,
     onClick,
+    onPointerEnter,
+    onPointerLeave,
   } = props;
 
   const now = new Date();
   const date = new Date(dayTimestamp);
   const isToday = date.toDateString() === now.toDateString();
 
+  const handleClick = useCallback(
+    () => {
+      onClick(dayTimestamp);
+    },
+    [onClick, dayTimestamp],
+  );
+
+  const handlePointerEnter = useCallback(
+    () => {
+      if (onPointerEnter) {
+        onPointerEnter(dayTimestamp);
+      }
+    },
+    [onPointerEnter, dayTimestamp],
+  );
+
+  const handlePointerLeave = useCallback(
+    () => {
+      if (onPointerLeave) {
+        onPointerLeave(dayTimestamp);
+      }
+    },
+    [onPointerLeave, dayTimestamp],
+  );
+
   return (
     <td
       className="calendar-day"
       data-in-range={inRange}
       data-selected={isSelected}
+      data-highlighted={isHighlighted}
     >
       <button
         type="button"
         className="calendar-day-button"
-        tabIndex={isToday ? 0 : -1}
         data-today={isToday}
         data-selected={isSelected}
         data-current-month={isCurrentMonth}
-        onClick={() => onClick(dayTimestamp)}
+        onClick={handleClick}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       >
         {children}
       </button>

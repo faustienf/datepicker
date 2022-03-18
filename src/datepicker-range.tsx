@@ -27,7 +27,10 @@ const DatepickerRange: FC<Props> = (props) => {
 
   const {
     nextSelected,
-    handleClick,
+    highlightedDays,
+    highlightedDay,
+    onClick,
+    onHighlight,
   } = useDatepickerRange(props);
 
   const nextSelectedSet = useSet(nextSelected);
@@ -41,11 +44,13 @@ const DatepickerRange: FC<Props> = (props) => {
       {(dayTimestamp) => (
         <CalendarDay
           key={String(dayTimestamp)}
+          isHighlighted={highlightedDay === dayTimestamp}
           isCurrentMonth={isCurrentMonth(currentMonthTimestamp, dayTimestamp)}
           isSelected={nextSelectedSet.has(dayTimestamp)}
-          inRange={checkInRange(dayTimestamp, nextSelected)}
+          inRange={checkInRange(dayTimestamp, highlightedDays)}
           dayTimestamp={dayTimestamp}
-          onClick={handleClick}
+          onClick={onClick}
+          onPointerEnter={onHighlight}
         >
           {displayDay(dayTimestamp)}
         </CalendarDay>
