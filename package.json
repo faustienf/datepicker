@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "start-storybook -p 6006 -s public",
+    "start": "ESLINT_NO_DEV_ERRORS=true TSC_COMPILE_ON_ERROR=true start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "tsc": "tsc",
     "lint": "eslint --fix --ext .ts,.tsx ./src",

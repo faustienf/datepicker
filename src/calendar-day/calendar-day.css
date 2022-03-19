@@ -4,28 +4,26 @@
   vertical-align: middle;
 }
 
-.calendar-day[data-in-range="true"] {
+.calendar-day[data-highlighted-mode] {
   background-color: #FFF9C4;
 }
 
-.calendar-day[data-in-range="true"]:first-child {
+.calendar-day[data-highlighted-mode]:first-child {
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
 }
 
-.calendar-day[data-in-range="true"]:last-child {
+.calendar-day[data-highlighted-mode]:last-child {
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
 }
 
-.calendar-day[data-in-range="true"][data-selected="true"] {
+.calendar-day[data-highlighted-mode="from"] {
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
 }
 
-.calendar-day[data-in-range="true"] + .calendar-day[data-in-range="true"][data-selected="true"] {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.calendar-day[data-highlighted-mode="to"] {
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
 }
@@ -61,8 +59,8 @@
 }
 
 .calendar-day-button[data-selected="true"] {
-  background-color: #FFCA28;
-  color: #fff;
+  border: 2px solid #FFCA28;
+  background-color: #FFF9C4;
   box-shadow: 0 6px 6px -3px #FFCA28;
 }
 

@@ -8,10 +8,9 @@ import { Timestamp } from '../types';
 import './calendar-day.css';
 
 type Props = {
-  inRange?: boolean;
   isCurrentMonth?: boolean;
   isSelected?: boolean;
-  isHighlighted?: boolean;
+  highlightedMode?: 'from' | 'to' | 'middle' | null;
   dayTimestamp: Timestamp;
   onClick: (dayTimestamp: Timestamp) => void;
   onPointerEnter?: (dayTimestamp: Timestamp) => void;
@@ -21,11 +20,10 @@ type Props = {
 const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   const {
     children,
-    inRange = false,
     isCurrentMonth = false,
     isSelected = false,
-    isHighlighted = false,
     dayTimestamp,
+    highlightedMode,
     onClick,
     onPointerEnter,
     onPointerLeave,
@@ -63,9 +61,8 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   return (
     <td
       className="calendar-day"
-      data-in-range={inRange}
       data-selected={isSelected}
-      data-highlighted={isHighlighted}
+      data-highlighted-mode={highlightedMode}
     >
       <button
         type="button"
@@ -73,6 +70,7 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
         data-today={isToday}
         data-selected={isSelected}
         data-current-month={isCurrentMonth}
+        data-highlighted-mode={highlightedMode}
         onClick={handleClick}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}

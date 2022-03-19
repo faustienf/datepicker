@@ -4,15 +4,10 @@ import { CalendarDay } from './calendar-day';
 import { displayDay, isCurrentMonth } from './date-helpers';
 import { useCalendarMonth } from './use-calendar-month';
 import { useDatepickerRange } from './use-datepicker-range';
+import { useHighlightedMode } from './use-highlighted-mode';
 import { useSet } from './use-set';
 
 type Props = Parameters<typeof useDatepickerRange>[0];
-
-const checkInRange = (target: number, range: number[]): boolean => {
-  const [min = 0, max = 0] = range;
-
-  return target >= min && target <= max;
-};
 
 const DatepickerRange: FC<Props> = (props) => {
   const {
@@ -27,13 +22,13 @@ const DatepickerRange: FC<Props> = (props) => {
 
   const {
     nextSelected,
-    highlightedDays,
     highlightedDay,
     onClick,
     onHighlight,
   } = useDatepickerRange(props);
 
   const nextSelectedSet = useSet(nextSelected);
+  const getHighlightedMode = useHighlightedMode(nextSelected, highlightedDay);
 
   return (
     <Calendar
@@ -44,10 +39,9 @@ const DatepickerRange: FC<Props> = (props) => {
       {(dayTimestamp) => (
         <CalendarDay
           key={String(dayTimestamp)}
-          isHighlighted={highlightedDay === dayTimestamp}
+          highlightedMode={getHighlightedMode(dayTimestamp)}
           isCurrentMonth={isCurrentMonth(currentMonthTimestamp, dayTimestamp)}
           isSelected={nextSelectedSet.has(dayTimestamp)}
-          inRange={checkInRange(dayTimestamp, highlightedDays)}
           dayTimestamp={dayTimestamp}
           onClick={onClick}
           onPointerEnter={onHighlight}

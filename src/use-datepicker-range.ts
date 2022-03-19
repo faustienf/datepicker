@@ -48,23 +48,17 @@ export const useDatepickerRange = ({ selected, onSelect }: Props) => {
 
   const onHighlight = useCallback(
     (dayTimestamp: Timestamp) => {
-      if (nextSelected.length !== 1) {
+      if (selectedCountRef.current.length !== 1) {
         return;
       }
 
       setHighlightedDay(dayTimestamp);
     },
-    [nextSelected],
-  );
-
-  const highlightedDays = useMemo(
-    () => [...nextSelected, highlightedDay].slice(0, 2).sort(),
-    [nextSelected, highlightedDay],
+    [],
   );
 
   return {
     nextSelected,
-    highlightedDays,
     highlightedDay,
     onClick,
     onHighlight,
