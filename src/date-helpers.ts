@@ -11,6 +11,13 @@ export const startOfDay = (dayTimestamp: Timestamp): Timestamp => {
   return date.setHours(0, 0, 0, 0);
 };
 
+export const lastDateOfMonth = (dayTimestamp: Timestamp): number => {
+  const date = new Date(dayTimestamp);
+  date.setMonth(date.getMonth() + 1, 1);
+  date.setDate(0);
+  return date.getDate();
+};
+
 export const displayDay = (timestamp: Timestamp): string => {
   const date = new Date(timestamp);
   return `0${date.getDate()}`.slice(-2);

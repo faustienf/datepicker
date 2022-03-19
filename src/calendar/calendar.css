@@ -9,3 +9,7 @@
   border: 0;
   border-spacing: 0 6px;
 }
+
+.calendar-table-cell {
+  padding: 0;
+}

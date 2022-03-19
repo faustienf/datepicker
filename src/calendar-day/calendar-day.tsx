@@ -4,6 +4,7 @@ import React, {
   PropsWithChildren,
   useCallback,
 } from 'react';
+import { lastDateOfMonth } from '../date-helpers';
 import { Timestamp } from '../types';
 import './calendar-day.css';
 
@@ -20,7 +21,7 @@ type Props = {
 const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   const {
     children,
-    isCurrentMonth = false,
+    isCurrentMonth = true,
     isSelected = false,
     dayTimestamp,
     highlightedMode,
@@ -59,9 +60,11 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
   );
 
   return (
-    <td
+    <div
       className="calendar-day"
-      data-selected={isSelected}
+      data-day={date.getDay()}
+      data-first-date={date.getDate() === 1}
+      data-last-date={lastDateOfMonth(dayTimestamp) === date.getDate()}
       data-highlighted-mode={highlightedMode}
     >
       <button
@@ -70,14 +73,13 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
         data-today={isToday}
         data-selected={isSelected}
         data-current-month={isCurrentMonth}
-        data-highlighted-mode={highlightedMode}
         onClick={handleClick}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
       >
         {children}
       </button>
-    </td>
+    </div>
   );
 };
 

@@ -13,17 +13,6 @@ type Props = {
   children: (dayTimestamp: number) => ReactNode;
 }
 
-const isCurrentMonth = (monthTimestamp: number, dayTimestamp: number) => {
-  const monthDate = new Date(monthTimestamp);
-  const date = new Date(dayTimestamp);
-  return monthDate.getMonth() === date.getMonth();
-};
-
-const displayDay = (timestamp: number): string => {
-  const date = new Date(timestamp);
-  return `0${date.getDate()}`.slice(-2);
-};
-
 const Calendar: FC<Props> = (props) => {
   const {
     children,
@@ -51,7 +40,14 @@ const Calendar: FC<Props> = (props) => {
         <tbody>
           {calendar.map((week, index) => (
             <tr key={String(index)}>
-              {week.map(children)}
+              {week.map((day) => (
+                <td
+                  key={day}
+                  className="calendar-table-cell"
+                >
+                  {children(day)}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

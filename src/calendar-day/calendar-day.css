@@ -8,12 +8,14 @@
   background-color: #FFF9C4;
 }
 
-.calendar-day[data-highlighted-mode]:first-child {
+.calendar-day[data-highlighted-mode][data-first-date="true"],
+.calendar-day[data-highlighted-mode][data-day="1"] {
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
 }
 
-.calendar-day[data-highlighted-mode]:last-child {
+.calendar-day[data-highlighted-mode][data-last-date="true"],
+.calendar-day[data-highlighted-mode][data-day="0"] {
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
 }

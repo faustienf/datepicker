@@ -16,6 +16,7 @@ const DatepickerRange: FC<Props> = (props) => {
 
   const {
     currentMonthTimestamp,
+    nextMonthTimestamp,
     onPrevMonth,
     onNextMonth,
   } = useCalendarMonth(selected ? selected[0] : Date.now());
@@ -31,25 +32,44 @@ const DatepickerRange: FC<Props> = (props) => {
   const getHighlightedMode = useHighlightedMode(nextSelected, highlightedDay);
 
   return (
-    <Calendar
-      monthTimestamp={currentMonthTimestamp}
-      onPrevMonth={onPrevMonth}
-      onNextMonth={onNextMonth}
-    >
-      {(dayTimestamp) => (
-        <CalendarDay
-          key={String(dayTimestamp)}
-          highlightedMode={getHighlightedMode(dayTimestamp)}
-          isCurrentMonth={isCurrentMonth(currentMonthTimestamp, dayTimestamp)}
-          isSelected={nextSelectedSet.has(dayTimestamp)}
-          dayTimestamp={dayTimestamp}
-          onClick={onClick}
-          onPointerEnter={onHighlight}
-        >
-          {displayDay(dayTimestamp)}
-        </CalendarDay>
-      )}
-    </Calendar>
+    <>
+      <Calendar
+        monthTimestamp={currentMonthTimestamp}
+        onPrevMonth={onPrevMonth}
+        onNextMonth={onNextMonth}
+      >
+        {(dayTimestamp) => isCurrentMonth(currentMonthTimestamp, dayTimestamp) && (
+          <CalendarDay
+            key={String(dayTimestamp)}
+            highlightedMode={getHighlightedMode(dayTimestamp)}
+            isSelected={nextSelectedSet.has(dayTimestamp)}
+            dayTimestamp={dayTimestamp}
+            onClick={onClick}
+            onPointerEnter={onHighlight}
+          >
+            {displayDay(dayTimestamp)}
+          </CalendarDay>
+        )}
+      </Calendar>
+      <Calendar
+        monthTimestamp={nextMonthTimestamp}
+        onPrevMonth={onPrevMonth}
+        onNextMonth={onNextMonth}
+      >
+        {(dayTimestamp) => isCurrentMonth(nextMonthTimestamp, dayTimestamp) && (
+          <CalendarDay
+            key={String(dayTimestamp)}
+            highlightedMode={getHighlightedMode(dayTimestamp)}
+            isSelected={nextSelectedSet.has(dayTimestamp)}
+            dayTimestamp={dayTimestamp}
+            onClick={onClick}
+            onPointerEnter={onHighlight}
+          >
+            {displayDay(dayTimestamp)}
+          </CalendarDay>
+        )}
+      </Calendar>
+    </>
   );
 };
 
