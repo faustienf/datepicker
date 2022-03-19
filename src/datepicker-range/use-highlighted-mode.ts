@@ -1,6 +1,6 @@
-import { useCallback, useMemo } from 'react';
-import { checkInRange } from './date-helpers';
-import { Timestamp } from './types';
+import { useMemo } from 'react';
+import { checkInRange } from '../utils';
+import { Timestamp } from '../types';
 
 export const useHighlightedMode = (
   nextSelected: Timestamp[],

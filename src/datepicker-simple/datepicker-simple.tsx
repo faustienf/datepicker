@@ -1,9 +1,9 @@
 import React, { FC, memo, useMemo } from 'react';
-import { Calendar } from './calendar';
-import { CalendarDay } from './calendar-day';
-import { displayDay, isCurrentMonth, startOfDay } from './date-helpers';
-import { Timestamp } from './types';
-import { useCalendarMonth } from './use-calendar-month';
+import { Calendar } from '../calendar';
+import { CalendarDay } from '../calendar-day';
+import { displayDay, isCurrentMonth, startOfDay } from '../utils';
+import { Timestamp } from '../types';
+import { useCalendarMonth } from '../use-calendar-month';
 
 type Props = {
   selected?: Timestamp;

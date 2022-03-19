@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { DatepickerSimple } from './datepicker-simple';
-import { DatepickerPopup } from './datepicker-popup';
+import { DatepickerPopup } from '../datepicker-popup';
 
 export default {
   title: 'Datepicker/simple',

@@ -1,8 +1,8 @@
 import {
-  useCallback, useMemo, useRef, useState,
+  useCallback, useRef, useState,
 } from 'react';
-import { startOfDay } from './date-helpers';
-import { Timestamp } from './types';
+import { startOfDay } from '../utils';
+import { Timestamp } from '../types';
 
 type Props = {
   selected?: [Timestamp, Timestamp];

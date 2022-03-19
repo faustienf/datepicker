@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { DatepickerRange } from './datepicker-range';
-import { DatepickerPopup } from './datepicker-popup';
+import { DatepickerPopup } from '../datepicker-popup';
 
 export default {
   title: 'Datepicker/range',

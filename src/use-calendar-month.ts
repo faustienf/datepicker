@@ -4,34 +4,33 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { Timestamp } from './types';
 
-const startOfMonth = (monthTimestamp: number): number => {
+const startOfMonth = (monthTimestamp: Timestamp): Timestamp => {
   const date = new Date(monthTimestamp);
   date.setDate(1);
   return date.setHours(0, 0, 0, 0);
 };
 
-const getNextMonthTimestamp = (monthTimestamp: number): number => {
+const getNextMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
   const currentDate = new Date(monthTimestamp);
   const nextDate = new Date(monthTimestamp);
-  nextDate.setDate(1);
   nextDate.setHours(0, 0, 0, 0);
-  nextDate.setMonth(currentDate.getMonth() + 1);
+  nextDate.setMonth(currentDate.getMonth() + 1, 1);
 
   return nextDate.getTime();
 };
 
-const getPrevMonthTimestamp = (monthTimestamp: number): number => {
+const getPrevMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
   const currentDate = new Date(monthTimestamp);
   const prevDate = new Date(monthTimestamp);
-  prevDate.setDate(1);
   prevDate.setHours(0, 0, 0, 0);
-  prevDate.setMonth(currentDate.getMonth() - 1);
+  prevDate.setMonth(currentDate.getMonth() - 1, 1);
 
   return prevDate.getTime();
 };
 
-export const useCalendarMonth = (timestamp: number) => {
+export const useCalendarMonth = (timestamp: Timestamp) => {
   const monthTimestamp = useMemo(() => startOfMonth(timestamp), [timestamp]);
   const [currentMonthTimestamp, setCurrentMonthTimestamp] = useState(monthTimestamp);
 

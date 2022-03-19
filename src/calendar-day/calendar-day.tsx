@@ -4,7 +4,7 @@ import React, {
   PropsWithChildren,
   useCallback,
 } from 'react';
-import { lastDateOfMonth } from '../date-helpers';
+import { lastDateOfMonth } from '../utils';
 import { Timestamp } from '../types';
 import './calendar-day.css';
 
