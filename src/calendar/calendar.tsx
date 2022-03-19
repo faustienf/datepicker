@@ -8,8 +8,8 @@ import './calendar.css';
 
 type Props = {
   monthTimestamp: number;
-  onPrevMonth: () => void;
-  onNextMonth: () => void;
+  onPrevMonth?: () => void;
+  onNextMonth?: () => void;
   children: (dayTimestamp: number) => ReactNode;
 }
 

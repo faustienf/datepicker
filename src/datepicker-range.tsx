@@ -33,11 +33,7 @@ const DatepickerRange: FC<Props> = (props) => {
 
   return (
     <>
-      <Calendar
-        monthTimestamp={currentMonthTimestamp}
-        onPrevMonth={onPrevMonth}
-        onNextMonth={onNextMonth}
-      >
+      <Calendar monthTimestamp={currentMonthTimestamp}>
         {(dayTimestamp) => isCurrentMonth(currentMonthTimestamp, dayTimestamp) && (
           <CalendarDay
             key={String(dayTimestamp)}

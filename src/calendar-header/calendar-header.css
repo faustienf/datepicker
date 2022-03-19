@@ -2,16 +2,22 @@
   font-family: inherit;
   line-height: 1;
   font-size: 16px;
-  color: #212121;
+  color: inherit;
   display: flex;
+  height: 24px;
   justify-content: space-between;
   align-items: center;
   text-transform: capitalize;
   margin-bottom: 8px;
+  padding-left: 8px;
 }
 
 .calendar-header-year {
   color: #B0BEC5;
+}
+
+.calendar-header-switcher {
+  display: flex;
 }
 
 .calendar-header-button {

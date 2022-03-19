@@ -37,31 +37,34 @@ const CalendarHeader: FC<Props> = (props) => {
 
   return (
     <div className="calendar-header">
-      {onPrevMonth && (
-        <button
-          type="button"
-          data-mode="prev"
-          className="calendar-header-button"
-          onClick={handlePrevMonth}
-        >
-          previous month
-        </button>
-      )}
-      <span>
+      <div>
         {month}
         {' '}
         <span className="calendar-header-year">{date.getFullYear()}</span>
-      </span>
-      {onNextMonth && (
-        <button
-          type="button"
-          data-mode="next"
-          className="calendar-header-button"
-          onClick={handleNextMonth}
-        >
-          next month
-        </button>
-      )}
+      </div>
+      <div className="calendar-header-switcher">
+        {onPrevMonth && (
+          <button
+            type="button"
+            data-mode="prev"
+            className="calendar-header-button"
+            onClick={handlePrevMonth}
+          >
+            previous month
+          </button>
+        )}
+        {onNextMonth && (
+          <button
+            type="button"
+            data-mode="next"
+            className="calendar-header-button"
+            onClick={handleNextMonth}
+          >
+            next month
+          </button>
+        )}
+        {' '}
+      </div>
     </div>
   );
 };
