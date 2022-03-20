@@ -22,7 +22,8 @@
     "build-storybook": "build-storybook -s public",
     "tsc": "tsc",
     "lint": "eslint --fix --ext .ts,.tsx ./src",
-    "check": "npm run tsc && npm run lint"
+    "check": "npm run tsc && npm run lint",
+    "deploy": "npx -p @storybook/storybook-deployer storybook-to-ghpages"
   },
   "eslintConfig": {
     "extends": [
