@@ -1,7 +1,7 @@
 [<img src="https://raw.githubusercontent.com/faustienf/datepicker/main/public/datepicker-range.png" width="600">](https://faustienf.github.io/datepicker/?path=/story/datepicker-range--default)
 # ⚛️ Modular DatePicker WIP!!!
 
-Made your DatePicker from calendar-components [Demo](https://faustienf.github.io/datepicker/?path=/story/datepicker-range--default)
+Make your DatePicker from calendar-components [Demo](https://faustienf.github.io/datepicker/?path=/story/datepicker-range--default)
 
 ## Usage
 
