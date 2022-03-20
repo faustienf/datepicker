@@ -24,7 +24,10 @@ export default {
 } as ComponentMeta<typeof DatepickerRange>;
 
 const Template: ComponentStory<typeof DatepickerRange> = (args) => {
-  const [value, setValue] = useState<[Timestamp, Timestamp]>([Date.now(), maxDate.getTime()]);
+  const [value, setValue] = useState<[Timestamp, Timestamp]>([
+    Date.now() as Timestamp,
+    maxDate.getTime() as Timestamp,
+  ]);
 
   return (
     <DatepickerPopup>

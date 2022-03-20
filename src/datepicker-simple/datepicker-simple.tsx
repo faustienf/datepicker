@@ -12,7 +12,7 @@ type Props = {
 
 const DatepickerSimple: FC<Props> = (props) => {
   const {
-    selected = 0,
+    selected = 0 as Timestamp,
     onSelect,
   } = props;
 
@@ -20,7 +20,7 @@ const DatepickerSimple: FC<Props> = (props) => {
     currentMonthTimestamp,
     onPrevMonth,
     onNextMonth,
-  } = useCalendarMonth(selected || Date.now());
+  } = useCalendarMonth(selected || Date.now() as Timestamp);
 
   const selectedStartOfDay = useMemo(
     () => startOfDay(selected),

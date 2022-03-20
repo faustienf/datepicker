@@ -6,6 +6,7 @@ import { useCalendarMonth } from '../use-calendar-month';
 import { useDatepickerRange } from './use-datepicker-range';
 import { useHighlightedMode } from './use-highlighted-mode';
 import { useSet } from '../use-set';
+import { Timestamp } from '../types';
 
 type Props = Parameters<typeof useDatepickerRange>[0];
 
@@ -15,12 +16,16 @@ const DatepickerRange: FC<Props> = (props) => {
     onDisableDay,
   } = props;
 
+  const monthTimestamp = selected
+    ? selected[0]
+    : Date.now() as Timestamp;
+
   const {
     currentMonthTimestamp,
     nextMonthTimestamp,
     onPrevMonth,
     onNextMonth,
-  } = useCalendarMonth(selected ? selected[0] : Date.now());
+  } = useCalendarMonth(monthTimestamp);
 
   const {
     nextSelected,

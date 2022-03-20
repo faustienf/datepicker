@@ -27,7 +27,7 @@ export const useDatepickerRange = (props: Props) => {
       .sort();
   });
 
-  const [highlightedDay, setHighlightedDay] = useState<Timestamp>(0);
+  const [highlightedDay, setHighlightedDay] = useState<Timestamp>(0 as Timestamp);
 
   // cache - fix recreating handleClick by selectedState
   const selectedCountRef = useRef(nextSelected);
@@ -43,7 +43,7 @@ export const useDatepickerRange = (props: Props) => {
 
         setNextSelected(finalNextSelected);
         onSelect(finalNextSelected);
-        setHighlightedDay(0);
+        setHighlightedDay(0 as Timestamp);
         return;
       }
 

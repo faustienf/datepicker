@@ -9,7 +9,7 @@ import { Timestamp } from './types';
 const startOfMonth = (monthTimestamp: Timestamp): Timestamp => {
   const date = new Date(monthTimestamp);
   date.setDate(1);
-  return date.setHours(0, 0, 0, 0);
+  return date.setHours(0, 0, 0, 0) as Timestamp;
 };
 
 const getNextMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
@@ -18,7 +18,7 @@ const getNextMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
   nextDate.setHours(0, 0, 0, 0);
   nextDate.setMonth(currentDate.getMonth() + 1, 1);
 
-  return nextDate.getTime();
+  return nextDate.getTime() as Timestamp;
 };
 
 const getPrevMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
@@ -27,7 +27,7 @@ const getPrevMonthTimestamp = (monthTimestamp: Timestamp): Timestamp => {
   prevDate.setHours(0, 0, 0, 0);
   prevDate.setMonth(currentDate.getMonth() - 1, 1);
 
-  return prevDate.getTime();
+  return prevDate.getTime() as Timestamp;
 };
 
 export const useCalendarMonth = (timestamp: Timestamp) => {

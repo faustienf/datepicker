@@ -4,13 +4,14 @@ import React, {
 import { CalendarWeekDays } from '../calendar-week-days';
 import { CalendarHeader } from '../calendar-header';
 import { makeCalendar } from '../make-calendar';
+import { Timestamp } from '../types';
 import './calendar.css';
 
 type Props = {
-  monthTimestamp: number;
+  monthTimestamp: Timestamp;
   onPrevMonth?: () => void;
   onNextMonth?: () => void;
-  children: (dayTimestamp: number) => ReactNode;
+  children: (dayTimestamp: Timestamp) => ReactNode;
 }
 
 const Calendar: FC<Props> = (props) => {

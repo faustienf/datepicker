@@ -8,7 +8,7 @@ export const isCurrentMonth = (monthTimestamp: Timestamp, dayTimestamp: Timestam
 
 export const startOfDay = (dayTimestamp: Timestamp): Timestamp => {
   const date = new Date(dayTimestamp);
-  return date.setHours(0, 0, 0, 0);
+  return date.setHours(0, 0, 0, 0) as Timestamp;
 };
 
 export const lastDateOfMonth = (dayTimestamp: Timestamp): number => {

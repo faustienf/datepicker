@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { DatepickerSimple } from './datepicker-simple';
 import { DatepickerPopup } from '../datepicker-popup';
+import { Timestamp } from '../types';
 
 export default {
   title: 'Datepicker/simple',
@@ -10,7 +11,7 @@ export default {
 } as ComponentMeta<typeof DatepickerSimple>;
 
 const Template: ComponentStory<typeof DatepickerSimple> = (args) => {
-  const [value, setValue] = useState<number | undefined>();
+  const [value, setValue] = useState<Timestamp | undefined>();
 
   return (
     <DatepickerPopup>

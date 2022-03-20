@@ -1,4 +1,5 @@
-type Timestamp = number;
+import { Timestamp } from './types';
+
 type CalendarWeek = Timestamp[]; // всегда 7 элементов
 export type Calendar = CalendarWeek[];
 
@@ -48,7 +49,7 @@ export const makeCalendar = (
     const lastWeek = calendar[calendar.length - 1];
 
     lastWeek.forEach((_, index): void => {
-      lastWeek[index] = dateIterator.getTime();
+      lastWeek[index] = dateIterator.getTime() as Timestamp;
       dateIterator.setDate(dateIterator.getDate() + 1);
     });
   }

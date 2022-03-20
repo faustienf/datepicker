@@ -1,6 +1,4 @@
-export type Timestamp = number;
+declare const opaque: unique symbol;
+type Opaque<T, OpaqueName> = T & { readonly [opaque]: OpaqueName };
 
-export type Value = {
-  from: Timestamp;
-  to: Timestamp;
-};
+export type Timestamp = Opaque<number, 'Timestamp'>;
