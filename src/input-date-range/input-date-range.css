@@ -1,0 +1,32 @@
+.input-date-range {
+  position: relative;
+}
+
+.input-date-range-picker {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+}
+
+.input-date-range-control {
+  background-color: #fff;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #263238;
+  border: 2px solid #FFCA28;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1;
+  outline: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  min-width: 250px;
+  text-align: center;
+}
+
+.input-date-range-control:focus {
+  box-shadow: 0 0px 6px 0px #ffca28;
+}
