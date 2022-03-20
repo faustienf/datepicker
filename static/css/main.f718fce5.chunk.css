@@ -1,0 +1,210 @@
+.calendar-week-day {
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  height: 18px;
+  font-size: 10px;
+  line-height: 1px;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: inherit;
+}
+
+.calendar-header {
+  font-family: inherit;
+  line-height: 1;
+  font-size: 16px;
+  color: inherit;
+  display: flex;
+  height: 24px;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
+  margin-bottom: 8px;
+  padding-left: 8px;
+}
+
+.calendar-header-year {
+  color: #B0BEC5;
+}
+
+.calendar-header-switcher {
+  display: flex;
+}
+
+.calendar-header-button {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url(../../static/media/icon-arrow-right.6df370fb.svg);
+  transition: transform 0.1s ease-out;
+}
+
+.calendar-header-button[data-mode="prev"] {
+  transform: rotate(180deg);
+}
+
+.calendar-header-button:active {
+  transform: scale(0.9);
+}
+
+.calendar-header-button[data-mode="prev"]:active {
+  transform: rotate(180deg) scale(0.9);
+}
+
+.calendar {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #263238;
+}
+
+.calendar-table {
+  table-layout: fixed;
+  border: 0;
+  border-spacing: 0 6px;
+}
+
+.calendar-table-cell {
+  padding: 0;
+}
+
+.calendar-day {
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendar-day[data-highlighted-mode] {
+  background-color: #FFF9C4;
+}
+
+.calendar-day[data-highlighted-mode][data-first-date="true"],
+.calendar-day[data-highlighted-mode][data-day="1"] {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.calendar-day[data-highlighted-mode][data-last-date="true"],
+.calendar-day[data-highlighted-mode][data-day="0"] {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.calendar-day[data-highlighted-mode="from"] {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.calendar-day[data-highlighted-mode="to"] {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.calendar-day-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  font-family: inherit;
+  line-height: 1;
+  font-size: 14px;
+  color: inherit;
+  width: 32px;
+  height: 32px;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  transition-property: background-color, color, box-shadow;
+}
+
+.calendar-day-button[data-current-month="false"] {
+  color: #90A4AE;
+}
+
+.calendar-day-button[data-today="true"] {
+  color: #EC407A;
+}
+
+.calendar-day-button[data-selected="true"] {
+  border: 2px solid #FFCA28;
+  background-color: #FFF9C4;
+  box-shadow: 0 6px 6px -3px #FFCA28;
+}
+
+.calendar-day-button:focus-visible {
+  box-shadow: 0 0 0 1px #000;
+}
+
+.calendar-day-button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  box-shadow: none
+}
+
+.datepicker-popup {
+  display: inline-flex;
+  flex-direction: row;
+  padding: 8px;
+  border-radius: 16px;
+  grid-column-gap: 8px;
+  column-gap: 8px;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 24px 0px #E0E0E0;
+}
+
+.input-date-range {
+  position: relative;
+}
+
+.input-date-range-picker {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+}
+
+.input-date-range-control {
+  background-color: #fff;
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #263238;
+  border: 2px solid #FFCA28;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1;
+  outline: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  min-width: 250px;
+  text-align: center;
+}
+
+.input-date-range-control:focus {
+  box-shadow: 0 0px 6px 0px #ffca28;
+}
+
+
+/*# sourceMappingURL=main.f718fce5.chunk.css.map*/
