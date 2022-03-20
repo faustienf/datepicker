@@ -7,9 +7,16 @@ import { Timestamp } from '../types';
 type Props = {
   selected?: [Timestamp, Timestamp];
   onSelect: (nextSelected: [Timestamp, Timestamp]) => void;
+  onDisableDay?: (dayTimestamp: Timestamp) => boolean;
 };
 
-export const useDatepickerRange = ({ selected, onSelect }: Props) => {
+export const useDatepickerRange = (props: Props) => {
+  const {
+    selected,
+    onSelect,
+    onDisableDay,
+  } = props;
+
   const [nextSelected, setNextSelected] = useState<Timestamp[]>(() => {
     if (!selected) {
       return [];
@@ -48,7 +55,9 @@ export const useDatepickerRange = ({ selected, onSelect }: Props) => {
 
   const onHighlight = useCallback(
     (dayTimestamp: Timestamp) => {
-      if (selectedCountRef.current.length !== 1) {
+      const isDisabled = onDisableDay && onDisableDay(dayTimestamp);
+
+      if (isDisabled || selectedCountRef.current.length !== 1) {
         return;
       }
 

@@ -12,6 +12,7 @@ type Props = Parameters<typeof useDatepickerRange>[0];
 const DatepickerRange: FC<Props> = (props) => {
   const {
     selected,
+    onDisableDay,
   } = props;
 
   const {
@@ -42,6 +43,7 @@ const DatepickerRange: FC<Props> = (props) => {
             dayTimestamp={dayTimestamp}
             onClick={onClick}
             onPointerEnter={onHighlight}
+            onDisable={onDisableDay}
           >
             {displayDay(dayTimestamp)}
           </CalendarDay>
@@ -60,6 +62,7 @@ const DatepickerRange: FC<Props> = (props) => {
             dayTimestamp={dayTimestamp}
             onClick={onClick}
             onPointerEnter={onHighlight}
+            onDisable={onDisableDay}
           >
             {displayDay(dayTimestamp)}
           </CalendarDay>

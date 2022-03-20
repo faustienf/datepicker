@@ -16,6 +16,7 @@ type Props = {
   onClick: (dayTimestamp: Timestamp) => void;
   onPointerEnter?: (dayTimestamp: Timestamp) => void;
   onPointerLeave?: (dayTimestamp: Timestamp) => void;
+  onDisable?: (dayTimestamp: Timestamp) => boolean;
 };
 
 const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
@@ -28,6 +29,7 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
     onClick,
     onPointerEnter,
     onPointerLeave,
+    onDisable,
   } = props;
 
   const now = new Date();
@@ -59,6 +61,8 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
     [onPointerLeave, dayTimestamp],
   );
 
+  const isDisabled = onDisable && onDisable(dayTimestamp);
+
   return (
     <div
       className="calendar-day"
@@ -70,6 +74,7 @@ const CalendarDay: FC<PropsWithChildren<Props>> = (props) => {
       <button
         type="button"
         className="calendar-day-button"
+        disabled={isDisabled}
         data-today={isToday}
         data-selected={isSelected}
         data-current-month={isCurrentMonth}
