@@ -63,7 +63,7 @@ export const useDatepickerRange = (props: Props) => {
 
       setHighlightedDay(dayTimestamp);
     },
-    [],
+    [onDisableDay],
   );
 
   return {

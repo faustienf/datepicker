@@ -48,6 +48,6 @@ export const useTrapFocus = (ref: RefObject<HTMLElement>) => {
         element.removeChild(trapElement);
       };
     },
-    [],
+    [ref],
   );
 };

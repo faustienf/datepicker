@@ -5,6 +5,7 @@
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "airbnb"
     ],
     "parser": "@typescript-eslint/parser",
@@ -17,6 +18,7 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint"
     ],
     "rules": {
@@ -32,6 +34,8 @@
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "indent": ["error", 2],
-        "react/jsx-indent": ["error", 2]
+        "react/jsx-indent": ["error", 2],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error"
     }
 }
